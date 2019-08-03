@@ -36,40 +36,51 @@ public class Player : MonoBehaviour
     private Vector2 direction;
 
 
+
+
     void Start()
     {
+        direction = Vector2.right;
         rb = GetComponent<Rigidbody2D>();
         maxHP = hp;
     }
-
-    void Update()
-    {   
-        if(Input.GetAxisRaw("Horizontal") != 0) {
-            direction = new Vector2(Mathf.Floor(Mathf.Clamp(rb.velocity.x, -1, 1)), 0);
-        }
-
-        if(!isRolling && IsGrounded())
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
-
+    private void FixedUpdate()
+    {
+        //In air movement to keep jumping velocity and stop insane movement speeds
         if(!IsGrounded()) {
             if(rb.velocity.x > -8 && Input.GetAxisRaw("Horizontal") < 0){
                 rb.AddForce(new Vector2(-speed * airControlAmount, 0));
             } else if(rb.velocity.x < 8 && Input.GetAxisRaw("Horizontal") > 0) {
                 rb.AddForce(new Vector2( speed * airControlAmount, 0));
             }
+        }   
+    }
+    void Update()
+    { 
+        //Get direction for roll, this still feels dodgy and needs worked on
+        if(Input.GetAxisRaw("Horizontal") != 0) {
+            direction = new Vector2(Mathf.Floor(Mathf.Clamp(rb.velocity.x, -1, 1)), 0);
         }
 
+        //Walk
+        if(!isRolling && IsGrounded())
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
+
+        //Jump
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space) && !isRolling)
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
 
+        //Wall jump
         if(!IsGrounded() && !isRolling && Input.GetKeyDown(KeyCode.Space)) {
             WallJump();
         }
 
+        //Roll
         if(Input.GetKeyDown(KeyCode.LeftShift) && !isRolling) {
             StartCoroutine("Roll");
         }
 
+        //Wait till player on ground to stop rolling
         if(waitToStopRoll && IsGrounded()) {
             isRolling = false;
             waitToStopRoll = false;
@@ -78,10 +89,15 @@ public class Player : MonoBehaviour
     }
 
     // Whether the player is on the ground or not
-    bool IsGrounded()
+    public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, groundLayer);
         return hit;
+    }
+
+    //Public function to get player direction
+    public Vector2 GetDirection() {
+        return direction;
     }
 
     // Whether the player is on the wall or not
@@ -90,12 +106,15 @@ public class Player : MonoBehaviour
         return hit;
     }
 
+    //Wall jump
     void WallJump() {
+        //If player is next to right wall, make em roll and apply force to the left
         if(IsWalled(Vector2.right)) {
             rb.AddForce(Vector2.right * -1 * jumpForce + new Vector2(0, jumpForce), ForceMode2D.Impulse);
             isRolling = true;
             waitToStopRoll = true;
         }
+        //If player is next to left wall, make em roll and apply force to the right
         if(IsWalled(Vector2.right * -1)) {
             rb.AddForce(Vector2.right * jumpForce + new Vector2(0, jumpForce), ForceMode2D.Impulse);
             isRolling = true;
@@ -103,12 +122,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Roll function
     IEnumerator Roll() {
         isRolling = true;
         isInvincible = true;
-        for(float time = 0f; time < 1f; time += Time.deltaTime * 3) {
+        //Add force for 0.33 seconds
+        for(float time = 0f; time < 1f; time += Time.fixedDeltaTime * 3) {
+            //Reduces force added at end of roll
                rb.AddForce(direction * rollSpeed * (1-time), ForceMode2D.Impulse);     
-            
+                Debug.Log(time);
             yield return null;
         }
         if(IsGrounded()) {
@@ -150,4 +172,5 @@ public class Player : MonoBehaviour
             TakeDamage();
         }
     }
+
 }
