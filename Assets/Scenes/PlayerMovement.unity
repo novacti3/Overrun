@@ -416,8 +416,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738283895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -8, z: 0}
-  m_LocalScale: {x: 40, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -12.5, z: 0}
+  m_LocalScale: {x: 80, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -459,6 +459,9 @@ MonoBehaviour:
   maxEnemiesAtOnceAmountPerFloor: 0a000000
   spawnedEnemies: []
   enemiesSpawnedAmount: 0
+  keyPrefab: {fileID: 0}
+  keySpawnJumpForce: 5
+  killsToPowerArrow: 0
 --- !u!114 &856982769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,8 +589,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073232571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 20, z: 1}
+  m_LocalPosition: {x: -22.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 40, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -693,8 +696,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225416314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.23, z: 0}
-  m_LocalScale: {x: 40, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 12.5, z: 0}
+  m_LocalScale: {x: 80, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -710,6 +713,7 @@ GameObject:
   - component: {fileID: 1370343905}
   - component: {fileID: 1370343904}
   - component: {fileID: 1370343903}
+  - component: {fileID: 1370343906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -782,6 +786,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1370343906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370343902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssetsPPU: 16
+  m_RefResolutionX: 715
+  m_RefResolutionY: 404
+  m_UpscaleRT: 1
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!1 &1386561437
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,7 +911,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1863341339}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 57e78acb5c36f614f9d550b5f72fb0d7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1011,7 +1035,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 512
-  rollSpeed: 1
+  rollSpeed: 10
   isRolling: 0
   damageTakenInvincibilityDuration: 1
 --- !u!1 &2101481269
@@ -1115,8 +1139,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101481269}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 20, z: 1}
+  m_LocalPosition: {x: 22.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 40, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5

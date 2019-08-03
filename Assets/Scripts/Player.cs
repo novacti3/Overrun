@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float rollSpeed;
     [SerializeField]
-    private bool isRolling;
+    public bool isRolling;
     private bool waitToStopRoll = false;
 
     [SerializeField]
@@ -129,8 +129,9 @@ public class Player : MonoBehaviour
         //Add force for 0.33 seconds
         for(float time = 0f; time < 1f; time += Time.fixedDeltaTime * 3) {
             //Reduces force added at end of roll
-               rb.AddForce(direction * rollSpeed * (1-time), ForceMode2D.Impulse);     
-                Debug.Log(time);
+            rb.velocity = direction * rollSpeed;
+               
+             Debug.Log(time);
             yield return null;
         }
 

@@ -21,10 +21,13 @@ public class Bow : MonoBehaviour
 
     LineRenderer trajectory;
 
-    float power = 25f;
+    GameMaster master;
+
+    float power = 5f;
 
     void Start()
     {
+        master = GameMaster.Instance;
         //Initialization
         player = GameMaster.Instance.player.GetComponent<Player>();
         originalTime = Time.fixedDeltaTime;
@@ -32,7 +35,6 @@ public class Bow : MonoBehaviour
 
     void Update()
     {
-        power = Mathf.Clamp(power, 25, 60);
         //Looks at mouse
         LookAtMouse();
 
@@ -41,10 +43,15 @@ public class Bow : MonoBehaviour
         {
             if(Input.GetMouseButton(0)) {
                 power += 0.5f;
+
             }
             if(Input.GetMouseButtonUp(0))
             {
                 if(canShoot) 
+                
+
+                    Time.timeScale = 1;
+                    Time.fixedDeltaTime = originalTime;
                     Shoot();
                     power = 25f;
             }
@@ -54,7 +61,7 @@ public class Bow : MonoBehaviour
             //If in the air slow down the time and wait till the button is released
             if(Input.GetMouseButton(0) && canShoot)
             {
-                power += 0.5f / Time.timeScale;
+                power += 0.5f;
                 Time.timeScale = 0.05f;
                 Time.fixedDeltaTime = Time.timeScale * 0.02f;
                 
@@ -68,6 +75,8 @@ public class Bow : MonoBehaviour
                 power = 25f;
             }
         }
+
+        Debug.Log(power);
     }
     
     //TODO: Add more velocity when arrow is going left or right
@@ -76,8 +85,17 @@ public class Bow : MonoBehaviour
     {
         GameObject arrowObject = Instantiate(arrow, transform.position, transform.rotation);
         arrowObject.GetComponent<Arrow>().bow = this;
+        if(power >= 100 && master.killsToPowerArrow >= 5 && !player.isRolling)
+            arrowObject.GetComponent<Arrow>().boomArrow = true;
+        
+        if(player.isRolling && !player.IsGrounded()) {
+            power = 50;
+            arrowObject.GetComponent<Arrow>().rollArrow = true;
+        }
+        power = Mathf.Clamp(power, 5, 50);
         arrowObject.GetComponent<Rigidbody2D>().velocity = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * power;
         canShoot = false;
+        
     }
 
     public void PickUpArrow()

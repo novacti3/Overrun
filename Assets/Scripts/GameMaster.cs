@@ -30,6 +30,8 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     private float keySpawnJumpForce = 5f;
 
+    public int killsToPowerArrow;
+
     private void Awake()
     {
         // Singleton
