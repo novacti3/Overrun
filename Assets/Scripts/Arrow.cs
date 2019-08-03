@@ -46,23 +46,12 @@ public class Arrow : MonoBehaviour
 
         //If its a wall stick in it and dont do damage anymore
         if(other.gameObject.layer == groundLayer || other.gameObject.layer == wallLayer)
-        {   
-            //if(bounceCount > 0) {
-            //    RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 1f);
-                
-            //    rb.velocity = Vector3.Reflect(rb.velocity, hit.normal);
-                
-            //    
-                
-            //    Debug.Log(hit.normal);
-            //    
-            }
-            //if(bounceCount <= 0) {
+        {  
                 GetComponent<PolygonCollider2D>().enabled=  false;
                 rb.velocity = Vector2.zero;
                 rb.isKinematic = true;
                 canDoDamage = false;
-            }
+            
         }
     }
 }
