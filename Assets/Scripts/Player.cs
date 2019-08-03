@@ -174,6 +174,12 @@ public class Player : MonoBehaviour
         {
             TakeDamage();
         }
+
+        Key key = collision.gameObject.GetComponent<Key>();
+        if (key)
+        {
+            key.Pickup();
+        }
     }
 
 }
