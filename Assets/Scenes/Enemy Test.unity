@@ -274,10 +274,12 @@ MonoBehaviour:
   player: {fileID: 1112581090}
   currentFloor: 0
   isGameInProgress: 1
-  enemiesPerFloor: 0f000000
-  maxEnemiesAtOnceAmountPerFloor: 05000000
+  enemiesPerFloor: 0a000000
+  maxEnemiesAtOnceAmountPerFloor: 0a000000
   spawnedEnemies: []
   enemiesSpawnedAmount: 0
+  keyPrefab: {fileID: 5880968410363989350, guid: b99180a297f51624ab63a052ec4a7dc6,
+    type: 3}
 --- !u!114 &278878563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,55 +337,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTypesSO: {fileID: 11400000, guid: 6cb5b7868ca84074dbfff913eda8fd27, type: 2}
   timeBetweenEnemySpawns: 1
---- !u!1 &1091613529
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1091613531}
-  - component: {fileID: 1091613530}
-  m_Layer: 0
-  m_Name: Rubble Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1091613530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1091613529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a7cce515760a51479a39d60f05d989a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rubblePrefab: {fileID: 4548165498932266283, guid: 621ede7172386ce49b23d6c6614979c1,
-    type: 3}
-  rubbleSpawnChance: 1
-  timeBetweenRubbleBatchSpawn: 5
-  rubblePerSpawn: 3
-  timeBetweenRubblePiecesSpawn: 0.5
---- !u!4 &1091613531
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1091613529}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 5.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1093050591
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,52 +593,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1899115322
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1899115323}
-  - component: {fileID: 1899115324}
-  m_Layer: 0
-  m_Name: Rubble Spawner (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1899115323
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899115322}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 5.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1899115324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899115322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a7cce515760a51479a39d60f05d989a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rubblePrefab: {fileID: 4548165498932266283, guid: 621ede7172386ce49b23d6c6614979c1,
-    type: 3}
-  rubbleSpawnChance: 15
-  timeBetweenRubbleBatchSpawn: 5
-  rubblePerSpawn: 3
-  timeBetweenRubblePiecesSpawn: 0.5

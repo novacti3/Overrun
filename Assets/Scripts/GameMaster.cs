@@ -25,6 +25,11 @@ public class GameMaster : MonoBehaviour
     // How many enemies have spawned (both alive and already dead) on the floor so far
     public int enemiesSpawnedAmount = 0;
 
+    [SerializeField]
+    private GameObject keyPrefab = null;
+    [SerializeField]
+    private float keySpawnJumpForce = 5f;
+
     private void Awake()
     {
         // Singleton
@@ -75,5 +80,10 @@ public class GameMaster : MonoBehaviour
     public void RemoveEnemyFromList(GameObject enemy)
     {
         spawnedEnemies.Remove(enemy);
+        if (spawnedEnemies.Count <= 0 && enemiesSpawnedAmount >= enemiesPerFloor[currentFloor])
+        {
+            GameObject key = Instantiate(keyPrefab, enemy.transform.position, Quaternion.identity);
+            key.GetComponent<Rigidbody2D>().AddForce(Vector2.up * keySpawnJumpForce, ForceMode2D.Impulse);
+        }
     }
 }

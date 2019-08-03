@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
+        GameMaster.Instance.RemoveEnemyFromList(gameObject);
         // TEMPORARY! Replace with the whole falling-off-the-screen-in-ouch-position bs
         Destroy(gameObject);
     }
