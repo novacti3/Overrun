@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundLayer);
-        bool grounded = hit.transform.transform.gameObject.layer == groundLayer ? true : false;
+        bool grounded = hit.transform != null && hit.transform.gameObject.layer == groundLayer ? true : false;
         return grounded;
     }
 }
