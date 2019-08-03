@@ -16,6 +16,9 @@ public class Arrow : MonoBehaviour
     [HideInInspector]
     public Bow bow;
 
+    int bounceCount = 1;
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,7 +27,7 @@ public class Arrow : MonoBehaviour
 
     bool canDoDamage = true;
     private void OnTriggerEnter2D(Collider2D other)
-    {
+    {   
         //Just standing up for myself here for some unearthly reason layer mask variable wasnt working here
         //I tried for ages
 
@@ -39,16 +42,27 @@ public class Arrow : MonoBehaviour
         //If it hits an enemy kill it
         if (enemy != null && canDoDamage) {
             enemy.Die();
-            rb.AddForce(transform.right * 3);
         } 
 
         //If its a wall stick in it and dont do damage anymore
         if(other.gameObject.layer == groundLayer || other.gameObject.layer == wallLayer)
-        {
-            Debug.Log("Yes");
-            rb.velocity = Vector2.zero;
-            rb.isKinematic = true;
-            canDoDamage = false;
+        {   
+            if(bounceCount > 0) {
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 1f);
+                
+                rb.velocity = 2 * (Mathf.Dot(hit.normal)
+                
+                
+                
+                Debug.Log(hit.normal);
+                
+            }
+            if(bounceCount <= 0) {
+                GetComponent<PolygonCollider2D>().enabled=  false;
+                rb.velocity = Vector2.zero;
+                rb.isKinematic = true;
+                canDoDamage = false;
+            }
         }
     }
 }

@@ -19,6 +19,10 @@ public class Bow : MonoBehaviour
 
     float originalTime;
 
+    LineRenderer trajectory;
+
+    float power = 25f;
+
     void Start()
     {
         //Initialization
@@ -28,16 +32,21 @@ public class Bow : MonoBehaviour
 
     void Update()
     {
+        power = Mathf.Clamp(power, 25, 60);
         //Looks at mouse
         LookAtMouse();
 
         //Shoot instantly if player is on ground : due to change
         if(player.IsGrounded())
         {
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButton(0)) {
+                power += 0.5f;
+            }
+            if(Input.GetMouseButtonUp(0))
             {
                 if(canShoot) 
                     Shoot();
+                    power = 25f;
             }
         }
         else
@@ -45,6 +54,7 @@ public class Bow : MonoBehaviour
             //If in the air slow down the time and wait till the button is released
             if(Input.GetMouseButton(0) && canShoot)
             {
+                power += 0.5f / Time.timeScale;
                 Time.timeScale = 0.05f;
                 Time.fixedDeltaTime = Time.timeScale * 0.02f;
                 
@@ -54,6 +64,8 @@ public class Bow : MonoBehaviour
                 Time.fixedDeltaTime = originalTime;
                 if(canShoot)
                     Shoot();
+                
+                power = 25f;
             }
         }
     }
@@ -64,7 +76,7 @@ public class Bow : MonoBehaviour
     {
         GameObject arrowObject = Instantiate(arrow, transform.position, transform.rotation);
         arrowObject.GetComponent<Arrow>().bow = this;
-        arrowObject.GetComponent<Rigidbody2D>().velocity = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * 25;
+        arrowObject.GetComponent<Rigidbody2D>().velocity = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * power;
         canShoot = false;
     }
 

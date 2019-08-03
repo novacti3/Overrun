@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
 
         //Wall jump
-        if(!IsGrounded() && !isRolling && Input.GetKeyDown(KeyCode.Space)) {
+        if(!IsGrounded() && Input.GetKeyDown(KeyCode.Space)) {
             WallJump();
         }
 
@@ -133,6 +133,8 @@ public class Player : MonoBehaviour
                 Debug.Log(time);
             yield return null;
         }
+
+        //At end of roll stop roll unless in air
         if(IsGrounded()) {
             isRolling = false;
         } else {
