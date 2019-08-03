@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = FindObjectOfType<Player>().transform;
+        player = GameMaster.Instance.player;
     }
     
     protected virtual void FixedUpdate()
