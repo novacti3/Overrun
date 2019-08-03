@@ -213,12 +213,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95ea5e46791fdc448aeb410864ae0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGO: {fileID: 1863341339}
   cam: {fileID: 1370343904}
   arrow: {fileID: 3941968714996205661, guid: 27e2dce057fbadb479f7c2644f97d471, type: 3}
   arrowLayer:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 4096
 --- !u!1 &738283895
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +323,7 @@ Transform:
   m_LocalScale: {x: 40, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &856982767
 GameObject:
@@ -356,11 +355,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22191b974ee28e4d9e9dbee22b043c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1863341342}
   currentFloor: 0
   isGameInProgress: 1
-  maxEnemyAmount: 10
+  enemiesPerFloor: 
+  maxEnemiesAtOnceAmountPerFloor: 
   spawnedEnemies: []
+  enemiesSpawnedAmount: 0
 --- !u!114 &856982769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,7 +386,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1073232571
 GameObject:
@@ -398,7 +399,7 @@ GameObject:
   - component: {fileID: 1073232574}
   - component: {fileID: 1073232573}
   - component: {fileID: 1073232572}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +493,7 @@ Transform:
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1086104371
 GameObject:
@@ -635,7 +636,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1370343902
 GameObject:
@@ -764,7 +765,7 @@ GameObject:
   - component: {fileID: 1863341343}
   - component: {fileID: 1863341340}
   - component: {fileID: 1863341344}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +860,7 @@ Transform:
   m_Children:
   - {fileID: 1467067509}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1863341343
 Rigidbody2D:
@@ -903,7 +904,7 @@ MonoBehaviour:
     m_Bits: 256
   wallLayer:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 512
   rollSpeed: 1
   isRolling: 0
   damageTakenInvincibilityDuration: 1
@@ -918,7 +919,7 @@ GameObject:
   - component: {fileID: 2101481272}
   - component: {fileID: 2101481271}
   - component: {fileID: 2101481270}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1012,5 +1013,5 @@ Transform:
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

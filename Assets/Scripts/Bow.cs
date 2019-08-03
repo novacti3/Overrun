@@ -5,9 +5,6 @@ using UnityEngine;
 public class Bow : MonoBehaviour
 {
     [SerializeField]
-    private GameObject playerGO;
-
-    [SerializeField]
     private Camera cam;
 
     private Player player;
@@ -22,28 +19,32 @@ public class Bow : MonoBehaviour
 
     float originalTime;
 
-    void Start() {
+    void Start()
+    {
         //Initialization
-        player = playerGO.GetComponent<Player>();
+        player = GameMaster.Instance.player.GetComponent<Player>();
         originalTime = Time.fixedDeltaTime;
-        
     }
+
     void Update()
     {
         //Looks at mouse
         LookAtMouse();
 
         //Shoot instantly if player is on ground : due to change
-        if(player.IsGrounded()) {
-            if(Input.GetMouseButtonDown(0)) {
+        if(player.IsGrounded())
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
                 if(canShoot) 
                     Shoot();
-                
             }
-        } else {
-            
+        }
+        else
+        {
             //If in the air slow down the time and wait till the button is released
-            if(Input.GetMouseButton(0) && canShoot) {
+            if(Input.GetMouseButton(0) && canShoot)
+            {
                 Time.timeScale = 0.05f;
                 Time.fixedDeltaTime = Time.timeScale * 0.02f;
                 
@@ -59,20 +60,22 @@ public class Bow : MonoBehaviour
     
     //TODO: Add more velocity when arrow is going left or right
     //Add velocity to the arrow when shot
-    void Shoot() {
+    void Shoot()
+    {
         GameObject arrowObject = Instantiate(arrow, transform.position, transform.rotation);
         arrowObject.GetComponent<Arrow>().bow = this;
         arrowObject.GetComponent<Rigidbody2D>().velocity = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * 25;
         canShoot = false;
-
     }
 
-    public void PickUpArrow() {
+    public void PickUpArrow()
+    {
         canShoot = true;
     }
 
     //Makes bow point to mouse
-    void LookAtMouse() {
+    void LookAtMouse()
+    {
         Vector3 target = cam.ScreenToWorldPoint(Input.mousePosition);
         target.z = 0;
 

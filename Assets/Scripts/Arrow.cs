@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    private Rigidbody2D rb;
+
     [SerializeField]
-    LayerMask player;
+    private int playerLayer;
+    [SerializeField]
+    private int groundLayer;
+    [SerializeField]
+    private int wallLayer;
 
     [HideInInspector]
     public Bow bow;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+
+    }
 
     bool canDoDamage = true;
     private void OnTriggerEnter2D(Collider2D other)
@@ -17,27 +29,26 @@ public class Arrow : MonoBehaviour
         //I tried for ages
 
         //If the arrow is touching the player, pick it up
-        if(other.gameObject.layer == 10) {
-            
+        if(other.gameObject.layer == playerLayer)
+        {
             bow.PickUpArrow();
             Destroy(gameObject);
-
         }
 
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
         //If it hits an enemy kill it
-        if(other.gameObject.GetComponent<Enemy>() && canDoDamage) {
-            other.gameObject.GetComponent<Enemy>().Die();
-            GetComponent<Rigidbody2D>().AddForce(transform.right * 3);
+        if (enemy != null && canDoDamage) {
+            enemy.Die();
+            rb.AddForce(transform.right * 3);
         } 
 
         //If its a wall stick in it and dont do damage anymore
-        if(other.gameObject.layer == 12){
-            Destroy(GetComponent<Rigidbody2D>());
+        if(other.gameObject.layer == groundLayer || other.gameObject.layer == wallLayer)
+        {
+            Debug.Log("Yes");
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
             canDoDamage = false;
-        } 
-        //If in wall dont do damage
-        if(other.gameObject.layer == 8) {
-            canDoDamage = false;
-        } 
+        }
     }
 }

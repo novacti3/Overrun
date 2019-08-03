@@ -143,9 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68838c4446b2d449963fa835a601f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player:
-    serializedVersion: 2
-    m_Bits: 1024
+  playerLayer: 11
+  groundLayer: 8
+  wallLayer: 9
   bow: {fileID: 0}
 --- !u!61 &-7088023430098222328
 BoxCollider2D:

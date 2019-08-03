@@ -34,15 +34,16 @@ public class GameMaster : MonoBehaviour
             Instance = this;
     }
 
-    private void Start()
+    /*private void Start()
     {
         if (!player)
             player = FindObjectOfType<Player>().transform;    
-    }
+    }*/
 
     private void LateUpdate()
     {
-        Debug.Log($"Enemies spawned: {enemiesSpawnedAmount}/{enemiesPerFloor[currentFloor]}");
+        if (spawnedEnemies.Count > 0)
+            Debug.Log($"Enemies spawned: {enemiesSpawnedAmount}/{enemiesPerFloor[currentFloor]}");
 
         if (maxEnemiesAtOnceAmountPerFloor.Length > 0 && 
                 spawnedEnemies.Count >= maxEnemiesAtOnceAmountPerFloor[currentFloor])
