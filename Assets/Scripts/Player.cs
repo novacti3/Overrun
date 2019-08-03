@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
         Debug.Log("Ended invincibility");
     }
 
-    private void TakeDamage()
+    public void TakeDamage()
     {
         hp--;
         Debug.Log("HP: " + hp);

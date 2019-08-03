@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     protected Transform player;
 
     [SerializeField]
-    private float movementSpeed = 3f;
+    protected float movementSpeed = 3f;
 
     protected virtual void Start()
     {
