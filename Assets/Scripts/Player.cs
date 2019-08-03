@@ -8,9 +8,15 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
 
     [SerializeField]
+    private int hp = 3;
+    private int maxHP;
+
+    [SerializeField]
     private float speed;
     [SerializeField]
     private float jumpForce;
+    [SerializeField]
+    private float airControlAmount = 5f;
 
     [SerializeField]
     private LayerMask groundLayer;
@@ -19,11 +25,13 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float rollSpeed;
+    [SerializeField]
+    private bool isRolling;
+    private bool waitToStopRoll = false;
 
     [SerializeField]
-    private bool rolling;
-
-    private bool waitToStopRoll = false;
+    private float damageTakenInvincibilityDuration = 1f;
+    private bool isInvincible = false;
 
     private Vector2 direction;
 
@@ -31,6 +39,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        maxHP = hp;
     }
 
     void Update()
@@ -39,41 +48,43 @@ public class Player : MonoBehaviour
             direction = new Vector2(Mathf.Floor(Mathf.Clamp(rb.velocity.x, -1, 1)), 0);
         }
 
-        if(!rolling && IsGrounded())
+        if(!isRolling && IsGrounded())
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
 
         if(!IsGrounded()) {
             if(rb.velocity.x > -8 && Input.GetAxisRaw("Horizontal") < 0){
-                rb.AddForce(new Vector2(-speed, 0));
+                rb.AddForce(new Vector2(-speed * airControlAmount, 0));
             } else if(rb.velocity.x < 8 && Input.GetAxisRaw("Horizontal") > 0) {
-                rb.AddForce(new Vector2( speed, 0));
+                rb.AddForce(new Vector2( speed * airControlAmount, 0));
             }
         }
 
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space) && !rolling)
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space) && !isRolling)
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
 
-        if(!IsGrounded() && Input.GetKeyDown(KeyCode.Space)) {
+        if(!IsGrounded() && !isRolling && Input.GetKeyDown(KeyCode.Space)) {
             WallJump();
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !rolling) {
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !isRolling) {
             StartCoroutine("Roll");
         }
 
         if(waitToStopRoll && IsGrounded()) {
-            rolling = false;
+            isRolling = false;
             waitToStopRoll = false;
         }
  
     }
 
+    // Whether the player is on the ground or not
     bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, groundLayer);
         return hit;
     }
 
+    // Whether the player is on the wall or not
     bool IsWalled(Vector2 direction) {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.6f, wallLayer);
         return hit;
@@ -82,27 +93,61 @@ public class Player : MonoBehaviour
     void WallJump() {
         if(IsWalled(Vector2.right)) {
             rb.AddForce(Vector2.right * -1 * jumpForce + new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            rolling = true;
+            isRolling = true;
             waitToStopRoll = true;
         }
         if(IsWalled(Vector2.right * -1)) {
             rb.AddForce(Vector2.right * jumpForce + new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            rolling = true;
+            isRolling = true;
             waitToStopRoll = true;
         }
     }
 
     IEnumerator Roll() {
-        rolling = true;
+        isRolling = true;
+        isInvincible = true;
         for(float time = 0f; time < 1f; time += Time.deltaTime * 3) {
                rb.AddForce(direction * rollSpeed * (1-time), ForceMode2D.Impulse);     
             
             yield return null;
         }
         if(IsGrounded()) {
-            rolling = false;
+            isRolling = false;
         } else {
             waitToStopRoll = true;
+        }
+        isInvincible = false;
+    }
+
+    // Makes the player invincible for a period of time
+    IEnumerator Invincibility(float duration)
+    {
+        Debug.Log("Started invincibility");
+        isInvincible = true;
+        yield return new WaitForSeconds(duration);
+        isInvincible = false;
+        Debug.Log("Ended invincibility");
+    }
+
+    private void TakeDamage()
+    {
+        hp--;
+        Debug.Log("HP: " + hp);
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+        // Starts the invincibility 
+        StartCoroutine(Invincibility(damageTakenInvincibilityDuration));
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        // Damages the player on collision with the enemy
+        if (enemy != null && !isInvincible)
+        {
+            TakeDamage();
         }
     }
 }
