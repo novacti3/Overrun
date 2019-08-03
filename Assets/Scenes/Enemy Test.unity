@@ -274,8 +274,10 @@ MonoBehaviour:
   player: {fileID: 1112581090}
   currentFloor: 0
   isGameInProgress: 1
-  maxEnemyAmount: 10
+  enemiesPerFloor: 0f000000
+  maxEnemiesAtOnceAmountPerFloor: 05000000
   spawnedEnemies: []
+  enemiesSpawnedAmount: 0
 --- !u!114 &278878563
 MonoBehaviour:
   m_ObjectHideFlags: 0

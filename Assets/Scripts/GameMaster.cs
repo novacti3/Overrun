@@ -14,11 +14,16 @@ public class GameMaster : MonoBehaviour
     // Whether the game is in progress or not
     public bool isGameInProgress = true;
 
-    // The max amount of enemies that can be in the room at once
-    public int maxEnemyAmount = 25;
+    // How many enemies there are in total per floor
+    public int[] enemiesPerFloor = new int[0];
+    // How many enemies there can be at once per floor
+    public int[] maxEnemiesAtOnceAmountPerFloor = new int[0];
     [HideInInspector]
     // List of all the enemies in the room
     public List<GameObject> spawnedEnemies = new List<GameObject>();
+    [HideInInspector]
+    // How many enemies have spawned (both alive and already dead) on the floor so far
+    public int enemiesSpawnedAmount = 0;
 
     private void Awake()
     {
@@ -37,7 +42,37 @@ public class GameMaster : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (spawnedEnemies.Count >= maxEnemyAmount)
+        Debug.Log($"Enemies spawned: {enemiesSpawnedAmount}/{enemiesPerFloor[currentFloor]}");
+
+        if (maxEnemiesAtOnceAmountPerFloor.Length > 0 && 
+                spawnedEnemies.Count >= maxEnemiesAtOnceAmountPerFloor[currentFloor])
             Debug.Log("Max enemies spawned!");
+
+        // DEBUG: Testing the whole addition and removal and spawning of enemies
+        if(spawnedEnemies.Count > 0 && Input.GetKeyDown(KeyCode.K))
+        {
+            Destroy(spawnedEnemies[0]);
+            RemoveEnemyFromList(spawnedEnemies[0]);
+        }
+    }
+
+    // Adds an enemy to the spawned enemies list
+    // Also ensures the amount of spawned enemies doesn't exceed the max allowed number of enemies in the room at once
+    public void AddEnemyToList(GameObject enemy)
+    {
+        if (spawnedEnemies.Count >= maxEnemiesAtOnceAmountPerFloor[currentFloor])
+        {
+            Destroy(enemy);
+            return;
+        }
+
+        spawnedEnemies.Add(enemy);
+        enemiesSpawnedAmount++;   
+    }
+
+    // Removes the enemy from the spawned enemies list
+    public void RemoveEnemyFromList(GameObject enemy)
+    {
+        spawnedEnemies.Remove(enemy);
     }
 }
