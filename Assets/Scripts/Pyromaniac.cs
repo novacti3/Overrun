@@ -2,20 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pyromaniac : Kamikaze
+public class Pyromaniac : Enemy
 {
+    // How far the player has to be from the enemy for the enemy to explode
+    public float distanceFromPlayerToExplode = 2f;
+    public float explosionRadius = 5f;
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        // Direction from the enemy to the player along the X axis
-        Vector2 moveDir = new Vector2(player.position.x - transform.position.x, transform.position.y);
-        // Moves the enemy towards the player and clamps the X velocity so it doesn't exceed the movement speed
-        rb.velocity = new Vector2(Mathf.Clamp(moveDir.x * movementSpeed, -movementSpeed, movementSpeed), rb.velocity.y);
-        
-        if(Vector2.Distance(transform.position,player.transform.position) < 2) {
+        if (Vector2.Distance(transform.position, player.transform.position) < distanceFromPlayerToExplode)
+        {
             Explode();
             //explode ani,
         }
+    }
+
+    public virtual void Explode()
+    {
+        List<GameObject> enemies = GameMaster.Instance.spawnedEnemies;
+        foreach (GameObject enemyInRange in enemies)
+        {
+            if (enemyInRange != null && Vector2.Distance(transform.position, enemyInRange.transform.position) < explosionRadius)
+                enemyInRange.GetComponent<Enemy>().Die();
+        }
+        //Explode anim
+        player.GetComponent<Player>().TakeDamage();
+
+        base.Die();
     }
 }

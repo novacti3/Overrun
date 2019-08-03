@@ -14,7 +14,8 @@ public class EnemySpawner : MonoBehaviour
     private EnemyType[] availableEnemyTypes = new EnemyType[0];
 
     [SerializeField]
-    private float timeBetweenEnemySpawns = 1.5f;
+    // Range of how long the spawn should take to how long it can take max
+    private Vector2 timeBetweenEnemySpawns = new Vector2(1f, 2f);
 
     // Whether the SpawnEnemies coroutine is running or not
     // Necessary to keep the enemy spawns going throughout the gameplay
@@ -32,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
     private void LateUpdate()
     {
         // Makes sure the coroutine is running when needed and doesn't end so it can keep spawning enemies
-        if (!isCoroutineRunning && 
+        if (!isCoroutineRunning &&
                 gm.enemiesSpawnedAmount < gm.enemiesPerFloor[gm.currentFloor] &&
                 gm.spawnedEnemies.Count < gm.maxEnemiesAtOnceAmountPerFloor[gm.currentFloor])
             StartCoroutine(SpawnEnemies());
@@ -69,11 +70,12 @@ public class EnemySpawner : MonoBehaviour
         isCoroutineRunning = true;
 
         // Spawn the enemies when the numbers don't exceed stuff they shouldn't exceed
-        while (gm.isGameInProgress && 
+        while (gm.isGameInProgress &&
                 gm.enemiesSpawnedAmount < gm.enemiesPerFloor[gm.currentFloor] &&
                 gm.spawnedEnemies.Count < gm.maxEnemiesAtOnceAmountPerFloor[gm.currentFloor])
         {
-            yield return new WaitForSeconds(timeBetweenEnemySpawns);
+            float secondsToWaitFor = Random.Range(timeBetweenEnemySpawns.x, timeBetweenEnemySpawns.y);
+            yield return new WaitForSeconds(secondsToWaitFor);
 
             GameObject enemyToSpawn = null;
             // Choose the enemy to spawn from all the enemy types based on their spawn chance

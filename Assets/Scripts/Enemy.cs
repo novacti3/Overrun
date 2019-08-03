@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
             Move();
     }
 
-    public virtual void Move()
+    protected virtual void Move()
     {
         // Direction from the enemy to the player along the X axis
         Vector2 moveDir = new Vector2(player.position.x - transform.position.x, transform.position.y);
