@@ -169,7 +169,9 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Started invincibility");
         isInvincible = true;
+        gameObject.layer = 16;
         yield return new WaitForSeconds(duration);
+        gameObject.layer =11;
         isInvincible = false;
         Debug.Log("Ended invincibility");
     }

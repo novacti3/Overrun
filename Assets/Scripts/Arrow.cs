@@ -9,7 +9,7 @@ public class Arrow : MonoBehaviour
     public Bow bow;
 
     [SerializeField]
-    private int playerLayer = 11;
+    private LayerMask playerLayer;
     [SerializeField]
     private int groundLayer = 8;
     [SerializeField]
@@ -58,7 +58,7 @@ public class Arrow : MonoBehaviour
         //I tried for ages
 
         //If the arrow is touching the player, pick it up
-        if (other.gameObject.layer == playerLayer)
+        if (other.gameObject.layer == 11 || other.gameObject.layer == 16)
         {
             bow.PickUpArrow();
             Destroy(gameObject);
@@ -69,10 +69,12 @@ public class Arrow : MonoBehaviour
             List<GameObject> enemies = gameMaster.spawnedEnemies;
             foreach (GameObject deadEnemy in enemies)
             {
-                if (deadEnemy != null && Vector2.Distance(transform.position, deadEnemy.transform.position) < 10)
+                if (deadEnemy != null)
                     deadEnemy.GetComponent<Enemy>().Die();
-                gameMaster.kills = 0;
+                    gameMaster.kills = 0;
+                
             }
+
         }
 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();

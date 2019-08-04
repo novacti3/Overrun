@@ -11,10 +11,16 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected float movementSpeed = 3f;
 
+    [SerializeField]
+    GameObject blood;
+
+    Animator animator;
+
     protected virtual void Start()
     {
         gm = GameMaster.Instance;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     protected virtual void FixedUpdate()
@@ -42,6 +48,7 @@ public class Enemy : MonoBehaviour
     {
         gm.kills++;
         gm.RemoveEnemyFromList(gameObject);
+        Instantiate(blood, transform.position, Quaternion.identity);
         // TEMPORARY! Replace with the whole falling-off-the-screen-in-ouch-position bs
         Destroy(gameObject);
     }

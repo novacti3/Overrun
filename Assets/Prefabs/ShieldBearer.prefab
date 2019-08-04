@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 8553660325483737992}
   - component: {fileID: 6342845203419290829}
   - component: {fileID: 7353403698117694250}
+  - component: {fileID: -4093016061931238988}
   m_Layer: 10
   m_Name: ShieldBearer
   m_TagString: Untagged
@@ -167,7 +168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8553660325483737998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.51, y: -3.538894, z: -3.6132812}
+  m_LocalPosition: {x: -6.51, y: -3, z: -3.6132812}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3369348583857383763}
@@ -258,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
+  blood: {fileID: 2752244960190083494, guid: 0a45587acad8e49478f57d38e15cb055, type: 3}
 --- !u!70 &7353403698117694250
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -274,3 +276,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.0625, y: 1.6875}
   m_Direction: 0
+--- !u!95 &-4093016061931238988
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8553660325483737998}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d64e9f60782af5b45bea1ee887cc4296, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -119,7 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bow: {fileID: 0}
-  playerLayer: 11
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 67584
   groundLayer: 8
   wallLayer: 9
   shieldLayer: 13

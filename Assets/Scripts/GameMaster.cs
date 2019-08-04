@@ -40,6 +40,9 @@ public class GameMaster : MonoBehaviour
     [HideInInspector]
     public int kills = 0;
 
+    [SerializeField]
+    Camera camera;
+
     private void Awake()
     {
         // Singleton
@@ -58,7 +61,9 @@ public class GameMaster : MonoBehaviour
 
         FloorSetup(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
-
+    void Update() {
+        camera.transform.position = new Vector3(0,0,-10);
+    }
     private void LateUpdate()
     {
         if (spawnedEnemies.Count > 0)
@@ -126,5 +131,25 @@ public class GameMaster : MonoBehaviour
             spawnedKey = Instantiate(keyPrefab, enemy.transform.position, Quaternion.identity);
             spawnedKey.GetComponent<Rigidbody2D>().AddForce(Vector2.up * keySpawnJumpForce, ForceMode2D.Impulse);
         }
+    }
+
+    public void CamShake(float time, float intensity) {
+        Vector3 originalCamPos = camera.transform.position;
+        IEnumerator couroutine  = CameraShake(time, intensity, originalCamPos);
+        StartCoroutine(couroutine);
+    }
+    IEnumerator CameraShake(float time, float intensity, Vector3 originalCamPos) {
+		
+        for(float i = 0; i < time; i += Time.fixedDeltaTime){
+            
+			camera.transform.position +=Random.insideUnitSphere * intensity;
+			
+
+            yield return new WaitForEndOfFrame();
+        }
+		
+	    camera.transform.localPosition = originalCamPos;
+		
+        
     }
 }
