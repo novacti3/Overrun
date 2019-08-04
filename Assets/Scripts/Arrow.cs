@@ -62,6 +62,7 @@ public class Arrow : MonoBehaviour
 
         if (boomArrow)
         {
+            hit.Play();
             List<GameObject> enemies = gameMaster.spawnedEnemies;
             foreach (GameObject deadEnemy in enemies)
             {

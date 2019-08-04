@@ -11,12 +11,16 @@ public class Key : MonoBehaviour
     [SerializeField]
     AudioSource Keysound;
 
+    bool pickup = false;
+
     public void Pickup()
     {
-        Keysound.Play();
-        OnKeyPickedUp?.Invoke();
-        Debug.Log("Key picked up");
-        Destroy(gameObject);
+        if(!pickup) {
+            Keysound.Play();
+            OnKeyPickedUp?.Invoke();
+            Debug.Log("Key picked up");
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     private void OnCOllisionEnter2D(Collision2D collision)

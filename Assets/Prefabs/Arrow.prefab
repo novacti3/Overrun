@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9178216251120587097}
   - component: {fileID: 5577345599654386895}
   - component: {fileID: -1847582356869131824}
-  - component: {fileID: 3565094134534626952}
+  - component: {fileID: -7280050793718814981}
   m_Layer: 12
   m_Name: Arrow
   m_TagString: Untagged
@@ -127,7 +127,7 @@ MonoBehaviour:
   wallLayer: 9
   shieldLayer: 13
   boomArrow: 0
-  hit: {fileID: 3565094134534626952}
+  hit: {fileID: -7280050793718814981}
 --- !u!61 &-9178216251120587097
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!82 &3565094134534626952
+--- !u!82 &-7280050793718814981
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -299,7 +299,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c900cc1ac8348a040864caf3bf34d5d8, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
