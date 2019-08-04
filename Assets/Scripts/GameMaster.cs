@@ -36,7 +36,7 @@ public class GameMaster : MonoBehaviour
     public int enemiesSpawnedAmount = 0;
 
     [HideInInspector]
-    public int killsToPowerArrow;
+    public int kills = 0;
 
     private void Awake()
     {

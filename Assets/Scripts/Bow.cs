@@ -84,18 +84,24 @@ public class Bow : MonoBehaviour
     //Add velocity to the arrow when shot
     void Shoot()
     {
-        GameObject arrowObject = Instantiate(arrow, transform.position, transform.rotation);
-        arrowObject.GetComponent<Arrow>().bow = this;
-        if(power >= 100 && master.killsToPowerArrow >= 5 && !player.isRolling)
-            arrowObject.GetComponent<Arrow>().boomArrow = true;
-        
-        if(player.isRolling && !player.IsGrounded()) {
-            power = 50;
-            arrowObject.GetComponent<Arrow>().rollArrow = true;
+        if(canShoot) {
+            canShoot = false;
+            GameObject arrowObject = Instantiate(arrow, transform.position, transform.rotation);
+            arrowObject.GetComponent<Arrow>().bow = this;
+            
+            if(power >= 100 && master.kills >= 5 && !player.isRolling) {
+                Debug.Log(master.kills);
+                arrowObject.GetComponent<Arrow>().boomArrow = true;
+            }
+            
+            if(player.isRolling && !player.IsGrounded()) {
+                power = 50;
+                arrowObject.GetComponent<Arrow>().rollArrow = true;
+            }
+            power = Mathf.Clamp(power, 5, 50);
+            arrowObject.GetComponent<Rigidbody2D>().velocity = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * power;
         }
-        power = Mathf.Clamp(power, 5, 50);
-        arrowObject.GetComponent<Rigidbody2D>().velocity = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * power;
-        canShoot = false;
+        
         
     }
 

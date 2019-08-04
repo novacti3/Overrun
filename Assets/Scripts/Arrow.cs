@@ -18,12 +18,14 @@ public class Arrow : MonoBehaviour
 
     int bounceCount = 1;
 
-    public bool boomArrow;
+    public bool boomArrow = false;
 
-    public bool rollArrow;
+    public bool rollArrow = false;
 
     GameMaster gameMaster;
 
+
+    bool canDoDamage = true;
 
     private void Start()
     {
@@ -31,14 +33,10 @@ public class Arrow : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
     }
-    private void Update() {
-        if(rb.velocity.x > 0.1f && rb.velocity.y > 0.1f) {
-            Vector2 dir = transform.GetComponent<Rigidbody2D>().velocity;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
+
+    void Update() {
+        Debug.Log(canDoDamage);
     }
-    bool canDoDamage = true;
     private void OnTriggerEnter2D(Collider2D other)
     {   
         //Just standing up for myself here for some unearthly reason layer mask variable wasnt working here
@@ -54,6 +52,7 @@ public class Arrow : MonoBehaviour
             foreach(GameObject deadEnemy in enemies) {
                 if(deadEnemy != null && Vector2.Distance(transform.position, deadEnemy.transform.position) < 10)
                     deadEnemy.GetComponent<Enemy>().Die();
+                    gameMaster.kills = 0;
             }
         }
 
@@ -76,6 +75,13 @@ public class Arrow : MonoBehaviour
                 rb.isKinematic = true;
                 canDoDamage = false;
             
+        }
+
+        if(other.gameObject.layer == 13 && bounceCount > 0) {
+            rb.velocity = -rb.velocity;
+            bounceCount --;
+
+            other.transform.root.GetComponent<ShieldBearer>().DamageShield();
         }
     }
 }
