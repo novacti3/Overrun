@@ -8,22 +8,21 @@ public class Pyromaniac : Enemy
     public float distanceFromPlayerToExplode = 2f;
     public float explosionRadius = 5f;
 
-    [SerializeField]
-    private GameObject explosion;
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (gm.player != null && Vector2.Distance(transform.position, gm.player.position) < distanceFromPlayerToExplode)
+        if (gm.player != null && Vector2.Distance(transform.position, gm.player.position) < distanceFromPlayerToExplode && !dead)
         {
-            Explode();
+            dead = true;
+            GetComponent<Animator>().SetTrigger("Explode");
             //explode ani,
         }
     }
 
     public virtual void Explode()
     {
-        Instantiate(explosion, transform.position, Quaternion.identity);
+        
         List<GameObject> enemies = GameMaster.Instance.spawnedEnemies;
         foreach (GameObject enemyInRange in enemies)
         {
@@ -35,6 +34,7 @@ public class Pyromaniac : Enemy
         if(Vector2.Distance(transform.position,  gm.player.transform.position) < explosionRadius) { 
              gm.player.GetComponent<Player>().TakeDamage();
         }
+        
         base.Die();
     }
 }

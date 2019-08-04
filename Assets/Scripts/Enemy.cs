@@ -16,6 +16,11 @@ public class Enemy : MonoBehaviour
 
     Animator animator;
 
+    [SerializeField]
+    private AudioSource hurt;
+
+    protected bool dead = false;
+
     protected virtual void Start()
     {
         gm = GameMaster.Instance;
@@ -34,6 +39,10 @@ public class Enemy : MonoBehaviour
         } else {
             transform.rotation = Quaternion.Euler(transform.eulerAngles.x, 0, transform.eulerAngles.z);
         }
+
+        if(dead && !hurt.isPlaying) {
+            Destroy(gameObject);
+        }
     }
 
     protected virtual void Move()
@@ -49,7 +58,11 @@ public class Enemy : MonoBehaviour
         gm.kills++;
         gm.RemoveEnemyFromList(gameObject);
         Instantiate(blood, transform.position, Quaternion.identity);
+        hurt.Play();
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled =false;
+        dead = true;
         // TEMPORARY! Replace with the whole falling-off-the-screen-in-ouch-position bs
-        Destroy(gameObject);
+        
     }
 }
