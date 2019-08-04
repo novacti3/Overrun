@@ -188,6 +188,7 @@ public class Player : MonoBehaviour
     // Makes the player invincible for a period of time
     IEnumerator Invincibility(float duration)
     {
+        animator.SetBool("Invincible", true);
         Debug.Log("Started invincibility");
         isInvincible = true;
         gameObject.layer = 16;
@@ -195,11 +196,15 @@ public class Player : MonoBehaviour
         gameObject.layer =11;
         isInvincible = false;
         Debug.Log("Ended invincibility");
+        animator.SetBool("Invincible", false);
     }
 
     public void TakeDamage()
     {
-        hurt.Play();
+        if(!hurt.isPlaying) 
+            hurt.Play();
+        
+        GameMaster.Instance.PlayerDamage();
         hp--;
         Debug.Log("HP: " + hp);
         if (hp <= 0)

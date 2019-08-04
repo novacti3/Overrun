@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab0a489ba6ba534c80677969c23c9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 1
   blood: {fileID: 2752244960190083494, guid: 0a45587acad8e49478f57d38e15cb055, type: 3}
   hurt: {fileID: 7759969816767119037}
 --- !u!70 &7353403698117694250

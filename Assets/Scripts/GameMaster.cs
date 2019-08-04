@@ -43,6 +43,10 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     Camera camera;
 
+    [SerializeField]
+    GameObject[] hearts;
+    int heartCount = 0;
+
     private void Awake()
     {
         // Singleton
@@ -151,5 +155,10 @@ public class GameMaster : MonoBehaviour
 	    camera.transform.localPosition = originalCamPos;
 		
         
+    }
+
+    public void PlayerDamage() {
+        hearts[heartCount].GetComponent<Animator>().SetTrigger("hurt");
+        heartCount++;
     }
 }
