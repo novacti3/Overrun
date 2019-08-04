@@ -1910,7 +1910,7 @@ PrefabInstance:
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
       propertyPath: enemiesPerFloor.Array.data[0]
-      value: 15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
