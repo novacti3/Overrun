@@ -38,6 +38,10 @@ public class Bow : MonoBehaviour
 
     void Update()
     {
+        if(!Input.GetMouseButton(0)) {
+                 Time.timeScale = 1;
+                    Time.fixedDeltaTime = originalTime;
+        }
         if(power >= 85 && !player.isRolling && GameMaster.Instance.kills >= 5) {
             GameMaster.Instance.CamShake(0.1f, Mathf.Clamp(power / 1000, 0, 0.4f));
         }
