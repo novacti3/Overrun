@@ -83,6 +83,12 @@ public class Player : MonoBehaviour
     }
     void Update()
     { 
+        if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x) {
+            GetComponent<SpriteRenderer>().flipX = true;
+        } else {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+
         if(dead && !death.isPlaying) {
             Destroy(gameObject);
         }
