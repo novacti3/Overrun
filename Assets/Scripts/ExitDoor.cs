@@ -15,7 +15,7 @@ public class ExitDoor : MonoBehaviour
         Debug.Log("Player in exit door range");
         if(isUnlocked && collision.gameObject.GetComponent<Player>() && Input.GetKeyDown(KeyCode.E))
         {
-            //OnExitDoorUsed?.Invoke();
+            OnExitDoorUsed?.Invoke();
             Debug.Log("Exit door used");
         }
     }

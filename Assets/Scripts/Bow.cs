@@ -30,7 +30,6 @@ public class Bow : MonoBehaviour
         master = GameMaster.Instance;
         //Initialization
         cam = Camera.main.GetComponent<Camera>();
-        player = GameMaster.Instance.player.GetComponent<Player>();
         originalTime = Time.fixedDeltaTime;
     }
 
@@ -39,47 +38,53 @@ public class Bow : MonoBehaviour
         //Looks at mouse
         LookAtMouse();
 
-        //Shoot instantly if player is on ground : due to change
-        if(player.IsGrounded())
+        if(master.player != null)
         {
-            if(Input.GetMouseButton(0)) {
-                power += 0.5f;
+            if (player == null)
+                player = master.player.GetComponent<Player>();
 
-            }
-            if(Input.GetMouseButtonUp(0))
+            //Shoot instantly if player is on ground : due to change
+            if (player.IsGrounded())
             {
-                if(canShoot) 
-                
+                if (Input.GetMouseButton(0))
+                {
+                    power += 0.5f;
 
-                    Time.timeScale = 1;
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    if (canShoot)
+
+
+                        Time.timeScale = 1;
                     Time.fixedDeltaTime = originalTime;
                     Shoot();
                     power = 25f;
+                }
             }
-        }
-        else
-        {
-            //If in the air slow down the time and wait till the button is released
-            if(Input.GetMouseButton(0) && canShoot)
+            else
             {
-                power += 0.5f;
-                Time.timeScale = 0.05f;
-                Time.fixedDeltaTime = Time.timeScale * 0.02f;
-                
-            }
-            if(Input.GetMouseButtonUp(0) || player.IsGrounded()) {
-                Time.timeScale = 1;
-                Time.fixedDeltaTime = originalTime;
-                if(canShoot)
-                    Shoot();
-                
-                power = 25f;
+                //If in the air slow down the time and wait till the button is released
+                if (Input.GetMouseButton(0) && canShoot)
+                {
+                    power += 0.5f;
+                    Time.timeScale = 0.05f;
+                    Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
+                }
+                if (Input.GetMouseButtonUp(0) || player.IsGrounded())
+                {
+                    Time.timeScale = 1;
+                    Time.fixedDeltaTime = originalTime;
+                    if (canShoot)
+                        Shoot();
+
+                    power = 25f;
+                }
             }
         }
-
-        Debug.Log(power);
     }
-    
+
     //TODO: Add more velocity when arrow is going left or right
     //Add velocity to the arrow when shot
     void Shoot()

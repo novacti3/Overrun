@@ -7,8 +7,10 @@ public class GameMaster : MonoBehaviour
 {
     public static GameMaster Instance;
 
-    public Transform player = null;
     [SerializeField]
+    private GameObject playerPrefab = null;
+    [HideInInspector]
+    public Transform player = null;
     private GameObject exitDoor = null;
     [SerializeField]
     private GameObject keyPrefab = null;
@@ -22,7 +24,7 @@ public class GameMaster : MonoBehaviour
     public int currentFloor = 0;
     [HideInInspector]
     // Whether the game is in progress or not
-    public bool isGameInProgress = true;
+    public bool isGameInProgress = false;
 
     // How many enemies there are in total per floor
     public int[] enemiesPerFloor = new int[0];
@@ -49,10 +51,12 @@ public class GameMaster : MonoBehaviour
 
     private void Start()
     {
-        FloorSetup();
+        SceneManager.sceneLoaded += FloorSetup;
 
         Key.OnKeyPickedUp += UnlockExitDoor;
         ExitDoor.OnExitDoorUsed += AdvanceToNextFloor;
+
+        FloorSetup(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
 
     private void LateUpdate()
@@ -60,27 +64,30 @@ public class GameMaster : MonoBehaviour
         if (spawnedEnemies.Count > 0)
             Debug.Log($"Enemies spawned: {enemiesSpawnedAmount}/{enemiesPerFloor[currentFloor]}");
 
-        if (maxEnemiesAtOnceAmountPerFloor.Length > 0 && 
+        if (maxEnemiesAtOnceAmountPerFloor.Length > 0 &&
                 spawnedEnemies.Count >= maxEnemiesAtOnceAmountPerFloor[currentFloor])
             Debug.Log("Max enemies spawned!");
 
         // DEBUG: Testing the whole addition and removal and spawning of enemies
-        if(spawnedEnemies.Count > 0 && Input.GetKeyDown(KeyCode.K))
+        if (spawnedEnemies.Count > 0 && Input.GetKeyDown(KeyCode.K))
         {
             Destroy(spawnedEnemies[0]);
             RemoveEnemyFromList(spawnedEnemies[0]);
         }
     }
 
-    private void FloorSetup()
+    private void FloorSetup(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Setting up floor");
-        if (!player)
-            player = FindObjectOfType<Player>().transform;
-        if (!exitDoor)
-            exitDoor = FindObjectOfType<ExitDoor>().gameObject;
+
+        exitDoor = FindObjectOfType<ExitDoor>().gameObject;
+
+        player = Instantiate(playerPrefab, exitDoor.transform.position, Quaternion.identity).transform;
+
         enemiesSpawnedAmount = 0;
         spawnedEnemies.Clear();
+
+        isGameInProgress = true;
     }
 
     private void UnlockExitDoor()
@@ -92,9 +99,8 @@ public class GameMaster : MonoBehaviour
     private void AdvanceToNextFloor()
     {
         Debug.Log("Advancing to the next floor");
-        SceneManager.LoadScene(floorSceneIndexes[currentFloor]);
         currentFloor++;
-        FloorSetup();
+        SceneManager.LoadScene(floorSceneIndexes[currentFloor]);
     }
 
     // Adds an enemy to the spawned enemies list
@@ -108,7 +114,7 @@ public class GameMaster : MonoBehaviour
         }
 
         spawnedEnemies.Add(enemy);
-        enemiesSpawnedAmount++;   
+        enemiesSpawnedAmount++;
     }
 
     // Removes the enemy from the spawned enemies list

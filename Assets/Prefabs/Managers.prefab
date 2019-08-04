@@ -56,8 +56,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22191b974ee28e4d9e9dbee22b043c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 2068227351937929080, guid: 12856ddfe737173459ef20c9da33786e,
+    type: 3}
   player: {fileID: 0}
-  exitDoor: {fileID: 0}
   keyPrefab: {fileID: 5880968410363989350, guid: b99180a297f51624ab63a052ec4a7dc6,
     type: 3}
   keySpawnJumpForce: 5
@@ -68,4 +69,4 @@ MonoBehaviour:
   maxEnemiesAtOnceAmountPerFloor: 05000000
   spawnedEnemies: []
   enemiesSpawnedAmount: 0
-  killsToPowerArrow: 10
+  kills: 0

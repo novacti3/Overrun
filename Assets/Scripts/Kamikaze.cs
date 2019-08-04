@@ -6,7 +6,7 @@ public class Kamikaze : Pyromaniac
 {
     protected override void Move()
     {
-        Vector2 moveDir = player.transform.position - transform.position;
+        Vector2 moveDir = gm.player.position - transform.position;
         transform.right = moveDir;
 
         rb.velocity = transform.right * movementSpeed;

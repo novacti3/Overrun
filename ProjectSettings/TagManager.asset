@@ -50,3 +50,6 @@ TagManager:
   - name: Characters
     uniqueID: 2003811031
     locked: 0
+  - name: Weapons and projectiles
+    uniqueID: 1167574683
+    locked: 0

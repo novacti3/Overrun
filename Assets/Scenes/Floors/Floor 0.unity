@@ -691,12 +691,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!4 &665726064 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1613174192}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705301002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,9 +1164,99 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
+      propertyPath: floorSceneIndexes.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: enemiesPerFloor.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: maxEnemiesAtOnceAmountPerFloor.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 665726064}
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: floorSceneIndexes.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: floorSceneIndexes.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: floorSceneIndexes.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: floorSceneIndexes.Array.data[3]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: floorSceneIndexes.Array.data[4]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: enemiesPerFloor.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: enemiesPerFloor.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: enemiesPerFloor.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: enemiesPerFloor.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: enemiesPerFloor.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: maxEnemiesAtOnceAmountPerFloor.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: maxEnemiesAtOnceAmountPerFloor.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: maxEnemiesAtOnceAmountPerFloor.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: maxEnemiesAtOnceAmountPerFloor.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: maxEnemiesAtOnceAmountPerFloor.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40326250f1215f84ca9e48052671fd11, type: 3}
 --- !u!1 &1410515482
@@ -1851,85 +1935,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1001 &1613174192
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2068227351937929080, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929085, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227351937929086, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068227353102472270, guid: 12856ddfe737173459ef20c9da33786e,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 12856ddfe737173459ef20c9da33786e, type: 3}
 --- !u!1 &1993627291
 GameObject:
   m_ObjectHideFlags: 0

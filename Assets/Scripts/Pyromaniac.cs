@@ -11,7 +11,7 @@ public class Pyromaniac : Enemy
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (Vector2.Distance(transform.position, player.transform.position) < distanceFromPlayerToExplode)
+        if (gm.player != null && Vector2.Distance(transform.position, gm.player.position) < distanceFromPlayerToExplode)
         {
             Explode();
             //explode ani,
@@ -27,7 +27,8 @@ public class Pyromaniac : Enemy
                 enemyInRange.GetComponent<Enemy>().Die();
         }
         //Explode anim
-        player.GetComponent<Player>().TakeDamage();
+        if(gm.player != null)
+            gm.player.GetComponent<Player>().TakeDamage();
 
         base.Die();
     }
