@@ -62,11 +62,16 @@ MonoBehaviour:
   keyPrefab: {fileID: 5880968410363989350, guid: b99180a297f51624ab63a052ec4a7dc6,
     type: 3}
   keySpawnJumpForce: 5
-  floorSceneIndexes: 
+  floorSceneIndexes: 0000000001000000020000000300000004000000
   currentFloor: 0
   isGameInProgress: 1
-  enemiesPerFloor: 05000000
-  maxEnemiesAtOnceAmountPerFloor: 05000000
+  enemiesPerFloor: 0f00000014000000190000001e00000023000000
+  maxEnemiesAtOnceAmountPerFloor: 0200000002000000020000000200000002000000
   spawnedEnemies: []
   enemiesSpawnedAmount: 0
   kills: 0
+  camera: {fileID: 0}
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
