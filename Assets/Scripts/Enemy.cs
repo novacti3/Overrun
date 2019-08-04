@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameMaster.Instance.player;
     }
-    
+
     protected virtual void FixedUpdate()
     {
         if (player != null)

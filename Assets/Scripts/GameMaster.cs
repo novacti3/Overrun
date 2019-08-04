@@ -35,6 +35,7 @@ public class GameMaster : MonoBehaviour
     // How many enemies have spawned (both alive and already dead) on the floor so far
     public int enemiesSpawnedAmount = 0;
 
+    [HideInInspector]
     public int killsToPowerArrow;
 
     private void Awake()

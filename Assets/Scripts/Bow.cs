@@ -29,6 +29,7 @@ public class Bow : MonoBehaviour
     {
         master = GameMaster.Instance;
         //Initialization
+        cam = Camera.main.GetComponent<Camera>();
         player = GameMaster.Instance.player.GetComponent<Player>();
         originalTime = Time.fixedDeltaTime;
     }
