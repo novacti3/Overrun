@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    private GameMaster gameMaster;
     private Rigidbody2D rb;
-
-    [SerializeField]
-    private int playerLayer;
-    [SerializeField]
-    private LayerMask groundLayer;
-    [SerializeField]
-    private int wallLayer;
-
-    [HideInInspector]
     public Bow bow;
+
+    [SerializeField]
+    private int playerLayer = 11;
+    [SerializeField]
+    private int groundLayer = 8;
+    [SerializeField]
+    private int wallLayer = 9;
+    [SerializeField]
+    private int shieldLayer = 13;
 
     int bounceCount = 1;
 
+    [HideInInspector]
     public bool boomArrow = false;
-
+    [HideInInspector]
     public bool rollArrow = false;
-
-    GameMaster gameMaster;
-
 
     bool canDoDamage = true;
 
@@ -35,14 +34,22 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
-        if(!rollArrow) {
+        if (!rollArrow)
+        {
             Vector2 dir = rb.velocity;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        } else {
-            transform.Rotate(new Vector3(0,0,10));
+        }
+        else
+        {
+            transform.Rotate(new Vector3(0, 0, 10));
         }
         Debug.Log(canDoDamage);
+    }
+
+    private void FreezeArrow()
+    {
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -56,7 +63,8 @@ public class Arrow : MonoBehaviour
             bow.PickUpArrow();
             Destroy(gameObject);
         }
-        else if (boomArrow)
+
+        if (boomArrow)
         {
             List<GameObject> enemies = gameMaster.spawnedEnemies;
             foreach (GameObject deadEnemy in enemies)
@@ -80,23 +88,21 @@ public class Arrow : MonoBehaviour
             if (rollArrow && bounceCount > 0)
             {
                 rb.velocity = -rb.velocity;
-
             }
             GetComponent<PolygonCollider2D>().enabled = false;
             rb.velocity = Vector2.zero;
-            Destroy(rb);
+            rb.freezeRotation = true;
+            rb.isKinematic = true;
             canDoDamage = false;
-
         }
 
-        if (other.gameObject.layer == 13 && bounceCount > 0)
+        if (other.gameObject.layer == shieldLayer && bounceCount > 0)
         {
             rb.velocity = -rb.velocity;
-            
             bounceCount--;
-
-            other.transform.root.GetComponent<ShieldBearer>().DamageShield();
-
+            ShieldBearer bearer = other.transform.root.GetComponent<ShieldBearer>();
+            if(bearer)
+                bearer.DamageShield();
         }
     }
 }
