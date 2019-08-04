@@ -58,6 +58,7 @@ public class GameMaster : MonoBehaviour
 
     private void Start()
     {
+        camera = Camera.main;
         SceneManager.sceneLoaded += FloorSetup;
 
         Key.OnKeyPickedUp += UnlockExitDoor;
@@ -67,7 +68,8 @@ public class GameMaster : MonoBehaviour
         FloorSetup(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
     void Update() {
-        camera.transform.position = new Vector3(0,0,-10);
+        if(camera != null)
+            camera.transform.position = new Vector3(0,0,-10);
     }
     private void LateUpdate()
     {

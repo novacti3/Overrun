@@ -15,7 +15,8 @@ public class Key : MonoBehaviour
 
     public void Pickup()
     {
-        if(!pickup) {
+        if(!pickup && !Keysound.isPlaying) {
+            pickup = true;
             Keysound.Play();
             OnKeyPickedUp?.Invoke();
             Debug.Log("Key picked up");

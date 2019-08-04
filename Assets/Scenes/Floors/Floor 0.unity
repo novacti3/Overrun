@@ -1907,6 +1907,36 @@ PrefabInstance:
       propertyPath: hearts.Array.data[2]
       value: 
       objectReference: {fileID: 976229913}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: enemiesPerFloor.Array.data[0]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: floorSceneIndexes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: floorSceneIndexes.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: floorSceneIndexes.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: floorSceneIndexes.Array.data[3]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
+        type: 3}
+      propertyPath: floorSceneIndexes.Array.data[4]
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40326250f1215f84ca9e48052671fd11, type: 3}
 --- !u!1 &1410515482
