@@ -91,7 +91,7 @@ public class Bow : MonoBehaviour
     {
         if(canShoot) {
             canShoot = false;
-            GameObject arrowObject = Instantiate(arrow, transform.position, transform.rotation);
+            GameObject arrowObject = Instantiate(arrow, transform.position, Quaternion.Euler(0,0,180 + transform.eulerAngles.z));
             arrowObject.GetComponent<Arrow>().bow = this;
             
             if(power >= 100 && master.kills >= 5 && !player.isRolling) {

@@ -35,11 +35,14 @@ public class Player : MonoBehaviour
 
     private Vector2 direction;
 
+    Animator animator;
+
 
 
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         direction = Vector2.right;
         rb = GetComponent<Rigidbody2D>();
         maxHP = hp;
@@ -53,13 +56,27 @@ public class Player : MonoBehaviour
             } else if(rb.velocity.x < 8 && Input.GetAxisRaw("Horizontal") > 0) {
                 rb.AddForce(new Vector2( speed * airControlAmount, 0));
             }
-        }   
+        } 
+
+        
+        if(isRolling) {
+            transform.Rotate(new Vector3(0,0,12.25f));
+        } else {
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+        }  
     }
     void Update()
     { 
+        animator.SetBool("Rolling", isRolling);
+        animator.SetBool("Grounded", IsGrounded());
+        animator.SetFloat("Y Velocity" , rb.velocity.y);
+
         //Get direction for roll, this still feels dodgy and needs worked on
         if(Input.GetAxisRaw("Horizontal") != 0) {
             direction = new Vector2(Mathf.Floor(Mathf.Clamp(rb.velocity.x, -1, 1)), 0);
+            animator.SetBool("Walking", true);
+        } else {
+            animator.SetBool("Walking", false);
         }
 
         //Walk
@@ -91,7 +108,7 @@ public class Player : MonoBehaviour
     // Whether the player is on the ground or not
     public bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, groundLayer);
         return hit;
            
         
@@ -126,13 +143,14 @@ public class Player : MonoBehaviour
 
     //Roll function
     IEnumerator Roll() {
+        
         isRolling = true;
         isInvincible = true;
         //Add force for 0.33 seconds
         for(float time = 0f; time < 1f; time += Time.fixedDeltaTime * 3) {
             //Reduces force added at end of roll
             rb.velocity = direction * rollSpeed;
-               
+                
              Debug.Log(time);
             yield return null;
         }
