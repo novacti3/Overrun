@@ -75,6 +75,8 @@ public class Arrow : MonoBehaviour
                 
             }
 
+            boomArrow = false;
+
         }
 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();

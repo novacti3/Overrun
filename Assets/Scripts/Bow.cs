@@ -35,7 +35,7 @@ public class Bow : MonoBehaviour
 
     void Update()
     {
-        if(power >= 85 && !player.isRolling && GameMaster.Instance.kills >= 0) {
+        if(power >= 85 && !player.isRolling && GameMaster.Instance.kills >= 5) {
             GameMaster.Instance.CamShake(0.1f, Mathf.Clamp(power / 1000, 0, 0.4f));
         }
         //Looks at mouse
@@ -98,7 +98,7 @@ public class Bow : MonoBehaviour
             arrowObject.GetComponent<Arrow>().bow = this;
             
             ///CHANGE TO 5
-            if(power >= 100 && master.kills >= 0 && !player.isRolling) {
+            if(power >= 100 && master.kills >=5  && !player.isRolling) {
                 Debug.Log(master.kills);
                 arrowObject.GetComponent<Arrow>().boomArrow = true;
             }
