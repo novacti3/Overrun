@@ -13,11 +13,35 @@ MonoBehaviour:
   m_Name: Game Enemy Types
   m_EditorClassIdentifier: 
   enemyTypes:
-  - enemyPrefab: {fileID: 8553660325483737998, guid: b8dba532c163e1e4093859c6e7e22378,
+  - enemyPrefab: {fileID: 8553660325483737998, guid: 39a316ac213d7b84289659e0aaff3e31,
       type: 3}
     spawnChances:
     - 100
     - 85
+    - 50
+    - 40
+    - 30
+  - enemyPrefab: {fileID: 8553660325483737998, guid: b8dba532c163e1e4093859c6e7e22378,
+      type: 3}
+    spawnChances:
+    - 0
+    - 15
+    - 20
+    - 20
+    - 30
+  - enemyPrefab: {fileID: 1525758084371398357, guid: dddfd738a6847b94f9d5a1395f919932,
+      type: 3}
+    spawnChances:
+    - 0
+    - 0
+    - 30
+    - 20
+    - 20
+  - enemyPrefab: {fileID: 5671665408745791803, guid: 3b019c3e26d98ed41ab12b00df5e6c1c,
+      type: 3}
+    spawnChances:
     - 0
     - 0
     - 0
+    - 20
+    - 20

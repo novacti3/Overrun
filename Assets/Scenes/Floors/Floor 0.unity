@@ -1934,52 +1934,52 @@ PrefabInstance:
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
       propertyPath: enemiesPerFloor.Array.data[1]
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
       propertyPath: enemiesPerFloor.Array.data[2]
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
       propertyPath: enemiesPerFloor.Array.data[3]
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
       propertyPath: enemiesPerFloor.Array.data[4]
-      value: 1
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
       propertyPath: enemiesPerFloor.Array.data[0]
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
       propertyPath: maxEnemiesAtOnceAmountPerFloor.Array.data[1]
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
       propertyPath: maxEnemiesAtOnceAmountPerFloor.Array.data[2]
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
       propertyPath: maxEnemiesAtOnceAmountPerFloor.Array.data[3]
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
       propertyPath: maxEnemiesAtOnceAmountPerFloor.Array.data[4]
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
       propertyPath: maxEnemiesAtOnceAmountPerFloor.Array.data[0]
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9035482022139251418, guid: 40326250f1215f84ca9e48052671fd11,
         type: 3}
