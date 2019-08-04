@@ -8,6 +8,9 @@ public class ShieldBearer : Enemy
 
     float shieldHealth;
 
+    [SerializeField]
+    AudioSource shieldBreak;
+
     protected override void Start()
     {
         base.Start();
@@ -27,6 +30,7 @@ public class ShieldBearer : Enemy
         if (shieldHealth <= 0)
         {
             Destroy(transform.GetChild(0).gameObject);
+            shieldBreak.Play();
         }
     }
 

@@ -8,8 +8,12 @@ public class Key : MonoBehaviour
     public delegate void KeyPickedUp();
     public static event KeyPickedUp OnKeyPickedUp;
 
+    [SerializeField]
+    AudioSource Keysound;
+
     public void Pickup()
     {
+        Keysound.Play();
         OnKeyPickedUp?.Invoke();
         Debug.Log("Key picked up");
         Destroy(gameObject);

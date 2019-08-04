@@ -25,6 +25,9 @@ public class Bow : MonoBehaviour
 
     float power = 5f;
 
+    [SerializeField]
+    AudioSource shoot;
+
     void Start()
     {
         master = GameMaster.Instance;
@@ -93,6 +96,7 @@ public class Bow : MonoBehaviour
     void Shoot()
     {
         if(canShoot) {
+            shoot.Play();
             canShoot = false;
             GameObject arrowObject = Instantiate(arrow, transform.position, Quaternion.Euler(0,0,180 + transform.eulerAngles.z));
             arrowObject.GetComponent<Arrow>().bow = this;

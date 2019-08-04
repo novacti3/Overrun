@@ -25,6 +25,9 @@ public class Arrow : MonoBehaviour
 
     bool canDoDamage = true;
 
+    [SerializeField]
+    AudioSource hit;
+
     private void Start()
     {
         gameMaster = GameMaster.Instance;
@@ -53,6 +56,8 @@ public class Arrow : MonoBehaviour
         {
             bow.PickUpArrow();
             Destroy(gameObject);
+        } else {
+            //hit.Play();
         }
 
         if (boomArrow)
@@ -73,6 +78,7 @@ public class Arrow : MonoBehaviour
         if(other.gameObject.layer == wallLayer || other.gameObject.layer == groundLayer) {
             rb.velocity=Vector2.zero;
             Destroy(rb);
+            Destroy(GetComponent<PolygonCollider2D>());
             canDoDamage = false;
         }
 

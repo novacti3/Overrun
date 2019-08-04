@@ -7,7 +7,7 @@ public class Fill : MonoBehaviour
     void Update()
     {
         float kills = GameMaster.Instance.kills;
-        GetComponent<RectTransform>().localPosition  = new Vector3(0, Mathf.Clamp(-40 + (kills*(100/5)),-40, 60));
+        GetComponent<RectTransform>().localPosition  = new Vector3(0, Mathf.Clamp(-60 + (kills*(100/5)),-60, 60));
         Debug.Log(-100 + (kills*(100/5)));
     }
 }
