@@ -22,7 +22,6 @@ public class Arrow : MonoBehaviour
     [HideInInspector]
     public bool boomArrow = false;
     [HideInInspector]
-    public bool rollArrow = false;
 
     bool canDoDamage = true;
 
@@ -34,23 +33,15 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
-        if (!rollArrow)
-        {
+        if(GetComponent<Rigidbody2D>()) {
             Vector2 dir = rb.velocity;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
-        else
-        {
-            transform.Rotate(new Vector3(0, 0, 10));
-        }
-        Debug.Log(canDoDamage);
+       
     }
 
-    private void FreezeArrow()
-    {
 
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -79,26 +70,22 @@ public class Arrow : MonoBehaviour
 
         }
 
+        if(other.gameObject.layer == wallLayer || other.gameObject.layer == groundLayer) {
+            rb.velocity=Vector2.zero;
+            Destroy(rb);
+            canDoDamage = false;
+        }
+
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         //If it hits an enemy kill it
         if (enemy != null && canDoDamage)
         {
             enemy.Die();
+            gameMaster.CamShake(0.2f, 0.5f);
         }
 
         //If its a wall stick in it and dont do damage anymore
-        if (other.gameObject.layer == groundLayer || other.gameObject.layer == wallLayer)
-        {
-            if (rollArrow && bounceCount > 0)
-            {
-                rb.velocity = -rb.velocity;
-            }
-            GetComponent<PolygonCollider2D>().enabled = false;
-            rb.velocity = Vector2.zero;
-            rb.freezeRotation = true;
-            rb.isKinematic = true;
-            canDoDamage = false;
-        }
+
 
         if (other.gameObject.layer == shieldLayer && bounceCount > 0)
         {

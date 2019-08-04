@@ -37,6 +37,19 @@ public class Player : MonoBehaviour
 
     Animator animator;
 
+    [SerializeField]
+    AudioSource jump;
+
+    [SerializeField]
+    AudioSource hurt;
+
+    [SerializeField]
+    AudioSource roll;
+    
+    [SerializeField]
+    AudioSource death;
+    
+    bool dead = false;
 
 
 
@@ -67,6 +80,9 @@ public class Player : MonoBehaviour
     }
     void Update()
     { 
+        if(dead && !death.isPlaying) {
+            Destroy(gameObject);
+        }
         animator.SetBool("Rolling", isRolling);
         animator.SetBool("Grounded", IsGrounded());
         animator.SetFloat("Y Velocity" , rb.velocity.y);
@@ -84,8 +100,11 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
 
         //Jump
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space) && !isRolling)
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space) && !isRolling) {
+
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            jump.Play();
+        }
 
         //Wall jump
         if(!IsGrounded() && Input.GetKeyDown(KeyCode.Space)) {
@@ -127,6 +146,7 @@ public class Player : MonoBehaviour
 
     //Wall jump
     void WallJump() {
+        jump.Play();
         //If player is next to right wall, make em roll and apply force to the left
         if(IsWalled(Vector2.right)) {
             rb.AddForce(Vector2.right * -1 * jumpForce + new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -144,6 +164,7 @@ public class Player : MonoBehaviour
     //Roll function
     IEnumerator Roll() {
         
+        roll.Play();
         isRolling = true;
         isInvincible = true;
         //Add force for 0.33 seconds
@@ -178,11 +199,16 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()
     {
+        hurt.Play();
         hp--;
         Debug.Log("HP: " + hp);
         if (hp <= 0)
         {
-            Destroy(gameObject);
+            dead = true;
+            death.Play();
+            GetComponent<SpriteRenderer>().enabled = false;
+            
+           
         }
         // Starts the invincibility 
         StartCoroutine(Invincibility(damageTakenInvincibilityDuration));

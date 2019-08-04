@@ -103,11 +103,7 @@ public class Bow : MonoBehaviour
                 arrowObject.GetComponent<Arrow>().boomArrow = true;
             }
             
-            if(player.isRolling && !player.IsGrounded()) {
-                power = 50;
-                arrowObject.GetComponent<Arrow>().rollArrow = true;
-            }
-            power = Mathf.Clamp(power, 30, 50);
+            power = Mathf.Clamp(power, 20, 35);
             arrowObject.GetComponent<Rigidbody2D>().velocity = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * power;
         }
         
