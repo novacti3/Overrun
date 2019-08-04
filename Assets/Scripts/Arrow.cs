@@ -9,7 +9,7 @@ public class Arrow : MonoBehaviour
     [SerializeField]
     private int playerLayer;
     [SerializeField]
-    private int groundLayer;
+    private LayerMask groundLayer;
     [SerializeField]
     private int wallLayer;
 
@@ -35,6 +35,13 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
+        if(!rollArrow) {
+            Vector2 dir = rb.velocity;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        } else {
+            transform.Rotate(new Vector3(0,0,10));
+        }
         Debug.Log(canDoDamage);
     }
 
@@ -73,12 +80,11 @@ public class Arrow : MonoBehaviour
             if (rollArrow && bounceCount > 0)
             {
                 rb.velocity = -rb.velocity;
-                bounceCount--;
-                return;
+
             }
             GetComponent<PolygonCollider2D>().enabled = false;
             rb.velocity = Vector2.zero;
-            rb.isKinematic = true;
+            Destroy(rb);
             canDoDamage = false;
 
         }
@@ -86,9 +92,11 @@ public class Arrow : MonoBehaviour
         if (other.gameObject.layer == 13 && bounceCount > 0)
         {
             rb.velocity = -rb.velocity;
+            
             bounceCount--;
 
             other.transform.root.GetComponent<ShieldBearer>().DamageShield();
+
         }
     }
 }

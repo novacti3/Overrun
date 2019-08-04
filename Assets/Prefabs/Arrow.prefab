@@ -118,10 +118,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLayer: 11
-  groundLayer: 8
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 768
   wallLayer: 9
   bow: {fileID: 0}
   boomArrow: 0
+  rollArrow: 0
 --- !u!61 &-9178216251120587097
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1525758084371398186}
   - component: {fileID: 1525758084371398185}
   - component: {fileID: -6781043998360979892}
+  - component: {fileID: 7611442084827689418}
   m_Layer: 0
   m_Name: Kamikaze
   m_TagString: Untagged
@@ -70,6 +71,7 @@ MonoBehaviour:
   movementSpeed: 3
   distanceFromPlayerToExplode: 2
   explosionRadius: 5
+  explosion: {fileID: 0}
 --- !u!61 &1525758084371398185
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -87,7 +89,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0625, y: 0.75}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -131,10 +133,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ed22f16e9043fc5418fcd539a8ccb08b, type: 3}
+  m_SortingLayerID: 2003811031
+  m_SortingLayer: 3
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -6671830718529078350, guid: b728e26e3764c814bac7da55a1f173fe,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,3 +148,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7611442084827689418
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525758084371398357}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4740db3ca930df644839a433c2d57eee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

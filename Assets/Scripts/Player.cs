@@ -93,6 +93,8 @@ public class Player : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, groundLayer);
         return hit;
+           
+        
     }
 
     //Public function to get player direction

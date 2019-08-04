@@ -21,6 +21,13 @@ public class Enemy : MonoBehaviour
     {
         if(gm.player != null)
             Move();
+
+        		
+		if(gm.player.transform.position.x < transform.position.x) {
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, 180, transform.eulerAngles.z);
+        } else {
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, 0, transform.eulerAngles.z);
+        }
     }
 
     protected virtual void Move()
