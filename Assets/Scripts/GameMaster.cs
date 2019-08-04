@@ -62,6 +62,7 @@ public class GameMaster : MonoBehaviour
 
         Key.OnKeyPickedUp += UnlockExitDoor;
         ExitDoor.OnExitDoorUsed += AdvanceToNextFloor;
+        Player.OnPlayerDied += EndGame;
 
         FloorSetup(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
@@ -109,7 +110,17 @@ public class GameMaster : MonoBehaviour
     {
         Debug.Log("Advancing to the next floor");
         currentFloor++;
-        SceneManager.LoadScene(floorSceneIndexes[currentFloor]);
+        if (currentFloor < floorSceneIndexes.Length)
+            SceneManager.LoadScene(floorSceneIndexes[currentFloor]);
+        else
+            SceneManager.LoadScene(6);
+    }
+
+    private void EndGame()
+    {
+        SceneManager.LoadScene(7);
+        SceneManager.sceneLoaded -= FloorSetup;
+        Destroy(gameObject);
     }
 
     // Adds an enemy to the spawned enemies list

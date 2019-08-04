@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Floors/Floor 4.unity
     guid: 13114b5ca8f028d4faaf520065a4c3c6
+  - enabled: 1
+    path: Assets/Scenes/Win Screen.unity
+    guid: 2c0f34ee058cce24f9a965d2b6852381
+  - enabled: 1
+    path: Assets/Scenes/Lose Screen.unity
+    guid: 53ae35af1c6cb4b4486b54144f8e3c03
   m_configObjects: {}

@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
 
+    public delegate void PlayerDied();
+    public static event PlayerDied OnPlayerDied;
+
     [SerializeField]
     private int hp = 3;
     private int maxHP;
@@ -212,8 +215,7 @@ public class Player : MonoBehaviour
             dead = true;
             death.Play();
             GetComponent<SpriteRenderer>().enabled = false;
-            
-           
+            OnPlayerDied?.Invoke();
         }
         // Starts the invincibility 
         StartCoroutine(Invincibility(damageTakenInvincibilityDuration));
