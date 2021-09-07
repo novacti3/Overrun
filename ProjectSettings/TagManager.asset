@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Ground
+  - Wall
+  - Enemies
+  - Player
+  - Arrow
+  - Shield
+  - Platforms
+  - Key
+  - Invincible
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3807075739
+    locked: 0
+  - name: Foreground
+    uniqueID: 749963279
+    locked: 0
+  - name: Characters
+    uniqueID: 2003811031
+    locked: 0
+  - name: Weapons and projectiles
+    uniqueID: 1167574683
+    locked: 0
